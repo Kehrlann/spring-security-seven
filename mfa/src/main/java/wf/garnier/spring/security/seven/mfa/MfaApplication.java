@@ -1,4 +1,4 @@
-package wf.garnier.security.seven.mfa;
+package wf.garnier.spring.security.seven.mfa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
