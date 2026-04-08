@@ -1,3 +1,9 @@
 spring:
   application:
     name: mfa
+  security:
+    user:
+      name: daniel
+      password: pw
+server:
+  port: 8080
