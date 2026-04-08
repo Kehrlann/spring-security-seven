@@ -20,6 +20,7 @@ Ideas for the talk
   - Dynamic client registration in server
 - MCP Security
 - Removed MvcRequestMatcher and AntPathRequestMatcher in favor of PathPatternRequestMatcher
+- CSRF SPA!
 
 
 
