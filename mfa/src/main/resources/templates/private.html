@@ -7,14 +7,26 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+<nav th:replace="~{_auth-header :: nav}"></nav>
 <h1>VIP section 🥳🎉🎊</h1>
 <p>Hello, ~[
     <th:block th:text="${name}"/>
     ]~ !
 </p>
 <p>You are on the very exclusive private page.</p>
-<p>You authentication type: <span th:text="${authType}"></span></p>
-<p>Your authorities: <span th:text="${authorities}"></span></p>
+<h2>Authentication type</h2>
+<p>You authentication type: <span th:text="${authType}" style="font-weight: bold;"></span></p>
+<h2>Authorities</h2>
+<ul>
+    <li th:each="authority : ${authorities}" th:text="${authority}"></li>
+</ul>
+<h2>Other pages</h2>
+<ul>
+    <li><a href="/daniel">Daniel</a> (must be Daniel)</li>
+    <li><a href="/admin">Admin</a> (must be admin, must MFA)</li>
+    <li><a href="/password">Update Password</a> (must have recent login)</li>
+    <li><a href="/stronger-password">Strong password update</a> (MFA for admins only)</li>
+</ul>
 <h2>Log out</h2>
 <form method="post" action="/logout" th:if="${_csrf != null}">
     <input name="_csrf" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

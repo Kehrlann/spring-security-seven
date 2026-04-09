@@ -33,4 +33,5 @@ public class MacOsMailNotifier implements MailNotifier {
 			return false;
 		}
 	}
+
 }
