@@ -117,11 +117,9 @@ class SecurityConfiguration {
 		return http.securityMatcher("/basic")
 			.authorizeHttpRequests(authz -> authz.anyRequest().hasAllRoles("admin", "user"))
 			.httpBasic(withDefaults())
-			.exceptionHandling(
-					e -> e.accessDeniedHandler(DelegatingMissingAuthorityAccessDeniedHandler
-							.builder()
-									.addEntryPointFor(new MissingRoleEntryPoint(), "ROLE_admin")
-							.build()))
+			.exceptionHandling(e -> e.accessDeniedHandler(DelegatingMissingAuthorityAccessDeniedHandler.builder()
+				.addEntryPointFor(new MissingRoleEntryPoint(), "ROLE_admin")
+				.build()))
 			.build();
 	}
 
