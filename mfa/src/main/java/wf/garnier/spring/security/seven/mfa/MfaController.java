@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 class MfaController {
@@ -51,6 +52,16 @@ class MfaController {
 		userDetailsService.updatePassword(authentication.getName(), newPassword);
 		model.addAttribute("success", true);
 		return "redirect:/private";
+	}
+
+	@GetMapping("/basic")
+	@ResponseBody
+	public HttpBasicResponse theQuestions() {
+		return new HttpBasicResponse("Life, the Universe, and Everything", 42);
+	}
+
+	record HttpBasicResponse(String question, int response) {
+
 	}
 
 }
