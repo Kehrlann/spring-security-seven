@@ -25,6 +25,7 @@
 	<modules>
 		<module>mfa</module>
 		<module>authorization-server</module>
+		<module>resource-server</module>
 	</modules>
 
 	<dependencyManagement>

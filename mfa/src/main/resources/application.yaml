@@ -1,5 +1,24 @@
 spring:
   application:
     name: mfa
+  security:
+    oauth2:
+      client:
+        registration:
+          admin-client:
+            client-id: default-client
+            client-secret: default-secret
+            authorization-grant-type: client_credentials
+            provider: authserver
+            scope:
+              - client.create
+          default-client:
+            client-id: default-client
+            client-secret: default-secret
+            authorization-grant-type: authorization_code
+            provider: authserver
+        provider:
+          authserver:
+            issuer-uri: http://localhost:9000
 server:
   port: 8080

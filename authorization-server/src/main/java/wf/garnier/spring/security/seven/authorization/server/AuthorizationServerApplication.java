@@ -16,13 +16,21 @@ public class AuthorizationServerApplication {
 
 	@Bean
 	Customizer<HttpSecurity> httpSecCustomizer() {
-		return http -> http.httpBasic(Customizer.withDefaults());
+		return http -> http
+				.authorizeHttpRequests(authz -> {
+					authz.requestMatchers("/oauth2/register").permitAll();
+                })
+				.httpBasic(Customizer.withDefaults());
 	}
 
+	// NOTE: ThrowingCustomizer
 	@Bean
 	Customizer<OAuth2AuthorizationServerConfigurer> authzServerConfigurer() {
-		return authzServer -> authzServer.oidc(oidc -> oidc.providerConfigurationEndpoint(
-				pce -> pce.providerConfigurationCustomizer(config -> config.claim("conference", "Spring I/O 2026"))));
+		return authzServer -> {
+			authzServer.clientRegistrationEndpoint(reg -> reg.openRegistrationAllowed(true));
+            authzServer.oidc(oidc -> oidc.providerConfigurationEndpoint(
+                    pce -> pce.providerConfigurationCustomizer(config -> config.claim("conference", "Spring I/O 2026"))));
+        };
 	}
 
 }

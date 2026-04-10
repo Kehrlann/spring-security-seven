@@ -6,6 +6,8 @@ spring:
       authorizationserver:
         client:
           example-client:
+            token:
+              access-token-time-to-live: 1h
             registration:
               client-id: "default-client"
               client-secret: "{noop}default-secret"
@@ -19,6 +21,7 @@ spring:
               scopes:
                 - openid
                 - profile
+                - client.create
               redirect-uris:
                 - "http://127.0.0.1:8080/authorize/oauth2/code/authserver"
                 - "http://127.0.0.1:8080/login/oauth2/code/authserver"
@@ -31,3 +34,6 @@ server:
     session:
       cookie:
         name: AUTHORIZATION_SERVER_SESSION_ID
+logging:
+  level:
+    org.springframework.security: TRACE

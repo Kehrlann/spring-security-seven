@@ -1,12 +1,9 @@
 package wf.garnier.spring.security.seven.mfa;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.function.Supplier;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.jspecify.annotations.Nullable;
 import wf.garnier.spring.security.seven.mfa.ott.MailNotifier;
 import wf.garnier.spring.security.seven.mfa.user.DemoUser;
@@ -26,14 +23,11 @@ import org.springframework.security.config.annotation.authorization.EnableMultiF
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.FactorGrantedAuthority;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.DelegatingMissingAuthorityAccessDeniedHandler;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
-import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -121,6 +115,14 @@ class SecurityConfiguration {
 				.addEntryPointFor(new MissingRoleEntryPoint(), "ROLE_admin")
 				.build()))
 			.build();
+	}
+
+	@Bean
+	@Order(2)
+	SecurityFilterChain oauth2FilterChain(HttpSecurity http) {
+		return http.securityMatcher("/oauth2/**").authorizeHttpRequests(authz -> authz.anyRequest().permitAll())
+				.oauth2Client(withDefaults())
+				.build();
 	}
 
 	@Bean
