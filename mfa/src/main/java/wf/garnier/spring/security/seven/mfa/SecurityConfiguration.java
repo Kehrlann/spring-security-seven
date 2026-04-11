@@ -113,6 +113,11 @@ class SecurityConfiguration {
 			.httpBasic(withDefaults())
 			.exceptionHandling(e -> e.accessDeniedHandler(DelegatingMissingAuthorityAccessDeniedHandler.builder()
 				.addEntryPointFor(new MissingRoleEntryPoint(), "ROLE_admin")
+				// default use-case for this:
+				// .addEntryPointFor(
+				// new LoginUrlAuthenticationEntryPoint("/login?factor.type=ott"),
+				// FactorGrantedAuthority.OTT_AUTHORITY
+				// )
 				.build()))
 			.build();
 	}
@@ -120,9 +125,10 @@ class SecurityConfiguration {
 	@Bean
 	@Order(2)
 	SecurityFilterChain oauth2FilterChain(HttpSecurity http) {
-		return http.securityMatcher("/oauth2/**").authorizeHttpRequests(authz -> authz.anyRequest().permitAll())
-				.oauth2Client(withDefaults())
-				.build();
+		return http.securityMatcher("/oauth2/**")
+			.authorizeHttpRequests(authz -> authz.anyRequest().permitAll())
+			.oauth2Client(withDefaults())
+			.build();
 	}
 
 	@Bean

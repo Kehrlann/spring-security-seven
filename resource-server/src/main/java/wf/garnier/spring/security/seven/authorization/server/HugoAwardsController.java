@@ -16,8 +16,8 @@ class HugoAwardsController {
 	}
 
 	@GetMapping("/hugo/winners")
-	public List<Book> getWinners(@RequestParam(required = false) String from,
-			@RequestParam(required = false) String to) {
+	public List<Book> getWinners(@RequestParam(required = false) Integer from,
+			@RequestParam(required = false) Integer to) {
 		return hugoAwardsService.getWinner(from, to);
 	}
 

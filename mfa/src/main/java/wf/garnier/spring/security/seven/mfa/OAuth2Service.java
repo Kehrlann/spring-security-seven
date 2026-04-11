@@ -39,7 +39,6 @@ class OAuth2Service {
 					""")
 			.retrieve()
 			.body(ClientRegistrationResponse.class);
-
 	}
 
 	@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
