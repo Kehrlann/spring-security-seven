@@ -7,7 +7,6 @@ import org.springframework.resilience.annotation.EnableResilientMethods;
 @EnableResilientMethods
 class OAuth2Configuration {
 
-
 	// {
 	// "client_id": "OFdCEx5tf5U2Yd9kSgPts318UObZIja7WvkFyiQgXVE",
 	// "client_id_issued_at": 1775826092,

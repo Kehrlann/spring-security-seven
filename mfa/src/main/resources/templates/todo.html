@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>📋 TODO [Spring Security Seven]</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const todosList = document.getElementById("todos");
+            const form = document.getElementById("add-todo");
+            const input = document.getElementById("todo-text");
+
+            const fetchTodos = async () => {
+                const response = await fetch("/todo", {
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+                if (response.ok) {
+                    const todos = await response.json();
+                    todosList.innerHTML = "";
+                    todos.forEach(todo => {
+                        const li = document.createElement("li");
+                        li.textContent = todo.text;
+                        todosList.appendChild(li);
+                    });
+                }
+            };
+
+            const getCsrfToken = () => {
+                const name = "XSRF-TOKEN=";
+                const decodedCookie = decodeURIComponent(document.cookie);
+                const ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) === 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            };
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const text = input.value.trim();
+                if (!text) return;
+
+                const formData = new URLSearchParams();
+                formData.append("text", text);
+                const csrfToken = getCsrfToken();
+                if (csrfToken) {
+                    formData.append("_csrf", csrfToken);
+                }
+
+                const response = await fetch("/todo", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-XSRF-TOKEN": csrfToken
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    input.value = "";
+                    fetchTodos();
+                }
+            });
+
+            // Initial fetch
+            fetchTodos();
+        });
+    </script>
+</head>
+<body>
+<nav th:replace="~{_auth-header :: nav}"></nav>
+<h1>📋 TODOs</h1>
+
+<ul id="todos">
+</ul>
+<form id="add-todo">
+    <label>
+        New TODO:
+        <input type="text" id="todo-text" name="text" placeholder="What needs to be done?" required>
+    </label>
+    <p><button type="submit" class="btn">Add</button></p>
+</form>
+<p><a href="/private" class="btn">Back to private</a></p>
+</body>
+</html>

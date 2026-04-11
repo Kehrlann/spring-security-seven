@@ -22,6 +22,7 @@ import org.springframework.security.authorization.RequiredFactor;
 import org.springframework.security.config.annotation.authorization.EnableMultiFactorAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.FactorGrantedAuthority;
@@ -128,6 +129,15 @@ class SecurityConfiguration {
 		return http.securityMatcher("/oauth2/**")
 			.authorizeHttpRequests(authz -> authz.anyRequest().permitAll())
 			.oauth2Client(withDefaults())
+			.build();
+	}
+
+	@Bean
+	@Order(3)
+	SecurityFilterChain todoFilterChain(HttpSecurity http) {
+		return http.securityMatcher("/todo/**")
+			.authorizeHttpRequests(authz -> authz.anyRequest().permitAll())
+			.csrf(CsrfConfigurer::spa)
 			.build();
 	}
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 class OAuth2Controller {
 
 	private final OAuth2Service oAuth2Service;
+
 	private final HugoService hugoService;
 
 	OAuth2Controller(OAuth2Service oAuth2Service, HugoService hugoService) {
