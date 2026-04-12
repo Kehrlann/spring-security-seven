@@ -106,7 +106,7 @@ https://docs.spring.io/spring-security/reference/7.0/whats-new.html
 
 <v-clicks depth="2">
 
-- OAuth2 Password Grant
+- OAuth2 Password Grant in client
     - I know you're sad 😢
     - But:
 </v-clicks>
