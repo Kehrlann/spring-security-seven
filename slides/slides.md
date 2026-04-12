@@ -54,20 +54,49 @@ It's packed with new features!
 https://docs.spring.io/spring-security/reference/7.0/whats-new.html
 
 ---
-layout: fact
----
 
-# What's gone?
-
----
-
-## What's gone?
+## Spring Security 7
 
 <br>
 
+1. 📋 The boring stuff
+1. 🔑📥🧬 Multi-Factor Authentication
+1. ⚙️ Modular configuration
+1. 🍹 The little details
+1. 🔒 OAuth2 new features
+1. 🤖 MCP Security
+
+---
+
+## Spring Security 7
+
+<br>
+
+1. **📋 The boring stuff**
+1. 🔑📥🧬 Multi-Factor Authentication
+1. ⚙️ Modular configuration
+1. 🍹 The little details
+1. 🔒 OAuth2 new features
+1. 🤖 MCP Security
+
+---
+
+## Module changes
+
+<br>
+
+<v-clicks depth="1">
+
 - `AccessDecisionManager`, `AccessDecisionVoter`, etc
-    - Deprecated in Spring Security 5!
     - ⏩ `org.springframework.security:spring-security-access`
+    - (Deprecated in Spring Security 5!)
+- Kerberos
+    - Before: `org.springframework.security.kerberos` version 2.x
+    - After: `org.springframework.security` version 7.x
+- Auhtorization Server
+    - Jump from 2.x to 7.x
+
+</v-clicks>
 
 ---
 
@@ -122,37 +151,173 @@ http.authorizeHttpRequests()
 </v-click>
 
 ---
-layout: fact
----
-
-# What's new?
-
----
 
 ## Spring Security 7
 
 <br>
 
-1. 🔑📥🧬 Multi-Factor Authentication
-1. 🛂 Authorization improvements
-1. ⚙️ Modular configuration
-1. 🍹 The little details
-1. 🔒 OAuth2 new features
-1. 🤖 MCP Security
-
----
-
-## Spring Security 7
-
-<br>
-
+1. 📋 The boring stuff
 1. **🔑📥🧬 Multi-Factor Authentication**
-1. 🛂 Authorization improvements
 1. ⚙️ Modular configuration
 1. 🍹 The little details
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
 
+---
+
+## Multi-factor authentication
+
+The longest-awaited feature of Spring Security!
+
+https://github.com/spring-projects/spring-security/issues/2603
+
+---
+
+## Multi-Factor Authentication
+
+Built around:
+
+- `FactorGrantedAuthority` - special authority
+- `@EnableMultiFactorAuthentication`
+- `AuthorizationManagerFactory` to adapt `.hasRole(...)` etc
+
+Use with:
+
+- App-wide with `@EnableMFA(authorities = ...)`
+- Endpoint-by-endpoint with `AuthorizationManager<...>`
+
+---
+
+## Time-based MFA
+
+"Authentication must be recent"
+
+```java
+// AuthorizationManager
+var passwordLastMinute = AuthorizationManagerFactories.multiFactor()
+	.requireFactor((factor) -> factor
+			.passwordAuthority()
+			.validDuration(Duration.ofSeconds(30))
+	)
+	.build();
+
+// usage:
+return http
+		.authorizeHttpRequests(authz -> {
+					authz.requestMatchers("/password")
+							.access(passwordLastMinute.authenticated());
+					// ...
+				})
+		// ...
+
+```
+
+---
+
+## Spring Security 7
+
+<br>
+
+1. 📋 The boring stuff
+1. 🔑📥🧬 Multi-Factor Authentication
+1. ⚙️ Modular configuration
+1. 🍹 The little details
+1. 🔒 OAuth2 new features
+1. 🤖 MCP Security
+
+---
+
+## Spring Security 7
+
+<br>
+
+1. 📋 The boring stuff
+1. 🔑📥🧬 Multi-Factor Authentication
+1. **⚙️ Modular configuration**
+1. 🍹 The little details
+1. 🔒 OAuth2 new features
+1. 🤖 MCP Security
+
+---
+
+## Modular configuration
+
+Use `Customizer` beans for `HttpSecurity` and top-level configurers.
+
+A variant `ThrowingCustomizer` handles exceptions.
+
+---
+
+## Spring Security 7
+
+<br>
+
+1. 📋 The boring stuff
+1. 🔑📥🧬 Multi-Factor Authentication
+1. ⚙️ Modular configuration
+1. **🍹 The little details**
+1. 🔒 OAuth2 new features
+1. 🤖 MCP Security
+
+---
+
+## The little details
+
+- `Authentication.toBuilder` to update authentications
+- `CsrfConfigurer#spa` for single-page apps
+- Particular entrypoints for missing authorities
+    - `DelegatingMissingAuthorityAccessDeniedHandler`
+
+---
+
+## Spring Security 7
+
+<br>
+
+1. 📋 The boring stuff
+1. 🔑📥🧬 Multi-Factor Authentication
+1. ⚙️ Modular configuration
+1. 🍹 The little details
+1. **🔒 OAuth2 new features**
+1. 🤖 MCP Security
+
+---
+
+## OAuth2 new features
+
+- Authorization Server:
+    - Dynamic Client Registration for OAuth2
+    - Proof Key for Code Exchange by default
+- Client:
+    - Support HTTP Service Client
+    - Use `@ClientRegistrationId`
+
+---
+
+## Spring Security 7
+
+<br>
+
+1. 📋 The boring stuff
+1. 🔑📥🧬 Multi-Factor Authentication
+1. ⚙️ Modular configuration
+1. 🍹 The little details
+1. 🔒 OAuth2 new features
+1. **🤖 MCP Security**
+
+---
+
+## MCP Security
+
+Track Model Context Protocol (MCP) authorization spec
+
+<small>that's hard, it changes every 3 months</small>
+
+Support for:
+
+- MCP Servers
+- MCP Client
+- MCP-compliant authorization-server
 
 ---
 

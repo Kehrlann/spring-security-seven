@@ -7,22 +7,24 @@ Ideas for the talk
   - AuthorizationManagerFactory
   - Duration
   - Programmatic
-- Binding missing authorities to authentication mechanisms.
 - Modular configuration
   - Customizer<HttpSecurity> and ThrowingCustomizer<HttpSecurity> with Boot
   - Removed and()
   - spa-based CSRF
+
+Little details:
 - Authentication.Builder
+- Binding missing authorities to authentication mechanisms.
 - Password4j
   - Argon2Password4jPasswordEncoder - Argon2 !
-- OAuth2
-  - Added OAuth2 Support for HTTP Service Clients
-  - Dynamic client registration in server
-- MCP Security
-- Removed MvcRequestMatcher and AntPathRequestMatcher in favor of PathPatternRequestMatcher
 - CSRF SPA!
 
 
+- OAuth2
+  - Dynamic client registration in server
+  - Added OAuth2 Support for HTTP Service Clients
+
+- MCP Security
 
 ## Mentions
 

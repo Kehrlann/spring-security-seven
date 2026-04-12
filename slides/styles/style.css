@@ -40,6 +40,11 @@ html {
   font-size: .9em;
 }
 
+.huge {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
 /**
  * GHColors theme by Avi Aryan (http://aviaryan.in)
  * Inspired by Github syntax coloring
