@@ -87,7 +87,8 @@ class SecurityConfiguration {
 						return new AuthorizationDecision(false);
 					});
 					authz.requestMatchers("/admin").access(mfa.hasRole("admin"));
-					authz.requestMatchers("/password").access(passwordLastMinute.authenticated());
+					authz.requestMatchers("/password")
+							.access(passwordLastMinute.authenticated());
 					authz.requestMatchers("/stronger-password").access(adminsMustMfa);
 
 					authz.anyRequest().authenticated();
@@ -110,7 +111,10 @@ class SecurityConfiguration {
 	@Order(1)
 	SecurityFilterChain httpBasicChain(HttpSecurity http) {
 		return http.securityMatcher("/basic")
-			.authorizeHttpRequests(authz -> authz.anyRequest().hasAllRoles("admin", "user"))
+			.authorizeHttpRequests(authz -> {
+				authz.requestMatchers("/basic/forbidden").hasRole("unknown");
+                authz.anyRequest().hasAllRoles("admin", "user");
+            })
 			.httpBasic(withDefaults())
 			.exceptionHandling(e -> e.accessDeniedHandler(DelegatingMissingAuthorityAccessDeniedHandler.builder()
 				.addEntryPointFor(new MissingRoleEntryPoint(), "ROLE_admin")
