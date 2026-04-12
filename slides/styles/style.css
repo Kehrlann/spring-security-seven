@@ -32,6 +32,10 @@ html {
       font-size: 3rem;
     }
   }
+
+  small {
+    font-size: .5rem;
+  }
 }
 
 

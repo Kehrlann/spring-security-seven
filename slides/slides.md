@@ -185,6 +185,7 @@ Use with:
 
 - App-wide with `@EnableMFA(authorities = ...)`
 - Endpoint-by-endpoint with `AuthorizationManager<...>`
+    - `AllRequiredFactorsAuthorizationManager`
 
 ---
 
@@ -220,19 +221,6 @@ return http
 
 1. 📋 The boring stuff
 1. 🔑📥🧬 Multi-Factor Authentication
-1. ⚙️ Modular configuration
-1. 🍹 The little details
-1. 🔒 OAuth2 new features
-1. 🤖 MCP Security
-
----
-
-## Spring Security 7
-
-<br>
-
-1. 📋 The boring stuff
-1. 🔑📥🧬 Multi-Factor Authentication
 1. **⚙️ Modular configuration**
 1. 🍹 The little details
 1. 🔒 OAuth2 new features
@@ -241,6 +229,10 @@ return http
 ---
 
 ## Modular configuration
+
+<br>
+
+No need for a full `SecurityFilterChain` bean.
 
 Use `Customizer` beans for `HttpSecurity` and top-level configurers.
 
@@ -262,6 +254,8 @@ A variant `ThrowingCustomizer` handles exceptions.
 ---
 
 ## The little details
+
+<br>
 
 - `Authentication.toBuilder` to update authentications
 - `CsrfConfigurer#spa` for single-page apps
@@ -285,9 +279,11 @@ A variant `ThrowingCustomizer` handles exceptions.
 
 ## OAuth2 new features
 
+<br>
+
 - Authorization Server:
     - Dynamic Client Registration for OAuth2
-    - Proof Key for Code Exchange by default
+    - Enfore Proof Key for Code Exchange by default
 - Client:
     - Support HTTP Service Client
     - Use `@ClientRegistrationId`
@@ -309,15 +305,17 @@ A variant `ThrowingCustomizer` handles exceptions.
 
 ## MCP Security
 
+<br>
+
+🎁 https://github.com/spring-ai-community/mcp-security/
+
+&nbsp;
+
 Track Model Context Protocol (MCP) authorization spec
+<br>
+<small>(that's hard, it changes every 3 months)</small>
 
-<small>that's hard, it changes every 3 months</small>
-
-Support for:
-
-- MCP Servers
-- MCP Client
-- MCP-compliant authorization-server
+Support for MCP: Servers, Clients, and for MCP-compliant authorization-server
 
 ---
 
