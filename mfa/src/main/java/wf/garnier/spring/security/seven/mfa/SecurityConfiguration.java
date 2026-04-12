@@ -27,7 +27,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.FactorGrantedAuthority;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.DelegatingMissingAuthorityAccessDeniedHandler;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -110,20 +109,18 @@ class SecurityConfiguration {
 	@Bean
 	@Order(1)
 	SecurityFilterChain httpBasicChain(HttpSecurity http) {
-		return http.securityMatcher("/basic")
-			.authorizeHttpRequests(authz -> {
-				authz.requestMatchers("/basic/forbidden").hasRole("unknown");
-                authz.anyRequest().hasAllRoles("admin", "user");
-            })
+		return http.securityMatcher("/basic/**").authorizeHttpRequests(authz -> {
+			authz.requestMatchers("/basic/forbidden").hasRole("unknown");
+			authz.anyRequest().hasAllRoles("admin", "user");
+		})
 			.httpBasic(withDefaults())
-			.exceptionHandling(e -> e.accessDeniedHandler(DelegatingMissingAuthorityAccessDeniedHandler.builder()
-				.addEntryPointFor(new MissingRoleEntryPoint(), "ROLE_admin")
-				// default use-case for this:
-				// .addEntryPointFor(
-				// new LoginUrlAuthenticationEntryPoint("/login?factor.type=ott"),
-				// FactorGrantedAuthority.OTT_AUTHORITY
-				// )
-				.build()))
+			.exceptionHandling(e -> e.defaultDeniedHandlerForMissingAuthority(new MissingRoleEntryPoint(), "ROLE_admin")
+			// default use-case for this:
+			// .addEntryPointFor(
+			// new LoginUrlAuthenticationEntryPoint("/login?factor.type=ott"),
+			// FactorGrantedAuthority.OTT_AUTHORITY
+			// )
+			)
 			.build();
 	}
 

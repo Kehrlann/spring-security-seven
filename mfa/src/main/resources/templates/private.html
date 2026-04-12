@@ -26,6 +26,7 @@
     <li><a href="/admin">Admin</a> (must be admin, must MFA)</li>
     <li><a href="/password">Update Password</a> (must have recent login)</li>
     <li><a href="/stronger-password">Strong password update</a> (MFA for admins only)</li>
+    <li><a href="/spa">Single page app</a></li>
 </ul>
 <h2>Log out</h2>
 <form method="post" action="/logout" th:if="${_csrf != null}">
