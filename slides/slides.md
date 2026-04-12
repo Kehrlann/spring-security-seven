@@ -24,7 +24,7 @@ Spring I/O, 2026-04-14
 
 ---
 layout: image-right
-image: /daniel-intro-small.jpg
+image: /daniel-broken-shoulder.jpg
 hideInToc: true
 class: smaller
 ---
