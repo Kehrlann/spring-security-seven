@@ -62,9 +62,9 @@ https://docs.spring.io/spring-security/reference/7.0/whats-new.html
 1. 📋 The boring stuff
 1. 🔑📥🧬 Multi-Factor Authentication
 1. ⚙️ Modular configuration
-1. 🍹 The little details
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
+1. 🍹 The little details
 
 ---
 
@@ -75,9 +75,9 @@ https://docs.spring.io/spring-security/reference/7.0/whats-new.html
 1. **📋 The boring stuff**
 1. 🔑📥🧬 Multi-Factor Authentication
 1. ⚙️ Modular configuration
-1. 🍹 The little details
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
+1. 🍹 The little details
 
 ---
 
@@ -159,9 +159,9 @@ http.authorizeHttpRequests()
 1. 📋 The boring stuff
 1. **🔑📥🧬 Multi-Factor Authentication**
 1. ⚙️ Modular configuration
-1. 🍹 The little details
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
+1. 🍹 The little details
 
 ---
 
@@ -224,9 +224,9 @@ return http
 1. 📋 The boring stuff
 1. 🔑📥🧬 Multi-Factor Authentication
 1. **⚙️ Modular configuration**
-1. 🍹 The little details
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
+1. 🍹 The little details
 
 ---
 
@@ -249,34 +249,9 @@ A variant `ThrowingCustomizer` handles exceptions.
 1. 📋 The boring stuff
 1. 🔑📥🧬 Multi-Factor Authentication
 1. ⚙️ Modular configuration
-1. **🍹 The little details**
-1. 🔒 OAuth2 new features
-1. 🤖 MCP Security
-
----
-
-## The little details
-
-<br>
-
-- `CsrfConfigurer#spa` for single-page apps
-- `Authentication.toBuilder` to update authentications
-- `Password4j` support
-- Particular entrypoints for missing authorities
-    - `DelegatingMissingAuthorityAccessDeniedHandler`
-
----
-
-## Spring Security 7
-
-<br>
-
-1. 📋 The boring stuff
-1. 🔑📥🧬 Multi-Factor Authentication
-1. ⚙️ Modular configuration
-1. 🍹 The little details
 1. **🔒 OAuth2 new features**
 1. 🤖 MCP Security
+1. 🍹 The little details
 
 ---
 
@@ -300,9 +275,9 @@ A variant `ThrowingCustomizer` handles exceptions.
 1. 📋 The boring stuff
 1. 🔑📥🧬 Multi-Factor Authentication
 1. ⚙️ Modular configuration
-1. 🍹 The little details
 1. 🔒 OAuth2 new features
 1. **🤖 MCP Security**
+1. 🍹 The little details
 
 ---
 
@@ -310,7 +285,7 @@ A variant `ThrowingCustomizer` handles exceptions.
 
 <br>
 
-🎁 https://github.com/spring-ai-community/mcp-security/
+📦 https://github.com/spring-ai-community/mcp-security/
 
 &nbsp;
 
@@ -319,6 +294,31 @@ Track Model Context Protocol (MCP) authorization spec
 <small>(that's hard, it changes every 3 months)</small>
 
 Support for MCP: Servers, Clients, and for MCP-compliant authorization-server
+
+---
+
+## Spring Security 7
+
+<br>
+
+1. 📋 The boring stuff
+1. 🔑📥🧬 Multi-Factor Authentication
+1. ⚙️ Modular configuration
+1. 🔒 OAuth2 new features
+1. 🤖 MCP Security
+1. **🍹 The little details**
+
+---
+
+## The little details
+
+<br>
+
+- `CsrfConfigurer#spa` for single-page apps
+- `Authentication.toBuilder` to update authentications
+- `Password4j` support
+- Particular entrypoints for missing authorities
+    - `DelegatingMissingAuthorityAccessDeniedHandler`
 
 ---
 
