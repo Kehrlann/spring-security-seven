@@ -93,7 +93,7 @@ https://docs.spring.io/spring-security/reference/7.0/whats-new.html
 - Kerberos
     - Before: `org.springframework.security.kerberos` version 2.x
     - After: `org.springframework.security` version 7.x
-- Auhtorization Server
+- Authorization Server
     - Jump from 2.x to 7.x
 
 </v-clicks>
@@ -167,6 +167,8 @@ http.authorizeHttpRequests()
 
 ## Multi-factor authentication
 
+<br>
+
 The longest-awaited feature of Spring Security!
 
 https://github.com/spring-projects/spring-security/issues/2603
@@ -194,7 +196,7 @@ Use with:
 "Authentication must be recent"
 
 ```java
-// AuthorizationManager
+// AuthorizationManagerFactory
 var passwordLastMinute = AuthorizationManagerFactories.multiFactor()
 	.requireFactor((factor) -> factor
 			.passwordAuthority()
@@ -257,8 +259,9 @@ A variant `ThrowingCustomizer` handles exceptions.
 
 <br>
 
-- `Authentication.toBuilder` to update authentications
 - `CsrfConfigurer#spa` for single-page apps
+- `Authentication.toBuilder` to update authentications
+- `Password4j` support
 - Particular entrypoints for missing authorities
     - `DelegatingMissingAuthorityAccessDeniedHandler`
 

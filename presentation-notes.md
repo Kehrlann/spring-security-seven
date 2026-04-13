@@ -36,6 +36,7 @@ On Authz server:
 ## Little details
 
 - Authorization.toBuilder in a test
+- Password encoder password4j
 - CsrfConfigurer#spa : show SPA
   - show CORS fails (ninja?)
   - BREACH support
