@@ -1,23 +1,33 @@
 package wf.garnier.spring.security.seven.mfa;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.resilience.annotation.EnableResilientMethods;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpRequestInterceptor;
+import org.springframework.security.oauth2.client.web.client.support.OAuth2RestClientHttpServiceGroupConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableResilientMethods
 class OAuth2Configuration {
 
-	// {
-	// "client_id": "OFdCEx5tf5U2Yd9kSgPts318UObZIja7WvkFyiQgXVE",
-	// "client_id_issued_at": 1775826092,
-	// "client_name": "54c462a3-656a-4c17-9a2a-3aee38c271c3",
-	// "client_secret":
-	// "DgJGE0mUIKiC7TpV-xSGEvjtqcuQW2I2u5aUgnig1chcTcyhVoKYYrTwwcEABfiB",
-	// "client_secret_expires_at": 0,
-	// "grant_types": [
-	// "client_credentials"
-	// ],
-	// "token_endpoint_auth_method": "client_secret_basic"
-	// }
 
+    @Bean
+    @Order(2)
+    SecurityFilterChain oauth2FilterChain(HttpSecurity http) {
+        return http.securityMatcher("/oauth2/**", "/authorize/oauth2/code/**")
+                .authorizeHttpRequests(authz -> authz.anyRequest().authenticated())
+                .oauth2Client(withDefaults())
+                .sessionManagement(withDefaults())
+                .build();
+    }
+
+    @Bean
+    OAuth2RestClientHttpServiceGroupConfigurer oauth2ServiceClientSupport(OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager) {
+        return OAuth2RestClientHttpServiceGroupConfigurer.from(oAuth2AuthorizedClientManager);
+    }
 }

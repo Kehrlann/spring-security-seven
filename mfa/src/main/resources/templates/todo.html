@@ -5,26 +5,43 @@
     <title>📋 TODO [Spring Security Seven]</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+    <script>        document.addEventListener("DOMContentLoaded", () => {
             const todosList = document.getElementById("todos");
             const form = document.getElementById("add-todo");
             const input = document.getElementById("todo-text");
+            const errorBanner = document.getElementById("error-banner");
+
+            const showError = (message) => {
+                errorBanner.textContent = message;
+                errorBanner.style.display = "block";
+            };
+
+            const clearError = () => {
+                errorBanner.style.display = "none";
+                errorBanner.textContent = "";
+            };
 
             const fetchTodos = async () => {
-                const response = await fetch("/todo", {
-                    headers: {
-                        "Accept": "application/json"
-                    }
-                });
-                if (response.ok) {
-                    const todos = await response.json();
-                    todosList.innerHTML = "";
-                    todos.forEach(todo => {
-                        const li = document.createElement("li");
-                        li.textContent = todo.text;
-                        todosList.appendChild(li);
+                clearError();
+                try {
+                    const response = await fetch("/todo", {
+                        headers: {
+                            "Accept": "application/json"
+                        }
                     });
+                    if (response.ok) {
+                        const todos = await response.json();
+                        todosList.innerHTML = "";
+                        todos.forEach(todo => {
+                            const li = document.createElement("li");
+                            li.textContent = todo.text;
+                            todosList.appendChild(li);
+                        });
+                    } else {
+                        showError(`Failed to fetch TODOs: HTTP ${response.status} ${response.statusText}`);
+                    }
+                } catch (err) {
+                    showError(`Network error: ${err.message}`);
                 }
             };
 
@@ -49,6 +66,8 @@
                 const text = input.value.trim();
                 if (!text) return;
 
+                clearError();
+
                 const formData = new URLSearchParams();
                 formData.append("text", text);
                 const csrfToken = getCsrfToken();
@@ -56,29 +75,36 @@
                     formData.append("_csrf", csrfToken);
                 }
 
-                const response = await fetch("/todo", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                        "X-XSRF-TOKEN": csrfToken
-                    },
-                    body: formData
-                });
+                try {
+                    const response = await fetch("/todo", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "X-XSRF-TOKEN": csrfToken
+                        },
+                        body: formData
+                    });
 
-                if (response.ok) {
-                    input.value = "";
-                    fetchTodos();
+                    if (response.ok) {
+                        input.value = "";
+                        fetchTodos();
+                    } else {
+                        showError(`Failed to add TODO: HTTP ${response.status} ${response.statusText}`);
+                    }
+                } catch (err) {
+                    showError(`Network error: ${err.message}`);
                 }
             });
 
             // Initial fetch
             fetchTodos();
-        });
-    </script>
+        });    </script>
 </head>
 <body>
 <nav th:replace="~{_auth-header :: nav}"></nav>
 <h1>📋 TODOs</h1>
+
+<div id="error-banner" style="display: none; background-color: #f8d7da; color: #721c24; padding: 10px; border: 1px solid #f5c6cb; border-radius: 5px; margin-bottom: 15px;"></div>
 
 <ul id="todos">
 </ul>

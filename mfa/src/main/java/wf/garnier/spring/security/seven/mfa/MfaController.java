@@ -37,7 +37,7 @@ class MfaController {
 		return "daniel";
 	}
 
-	@GetMapping("/password")
+	@GetMapping({ "/password", "/stronger-password" })
 	public String passwordPage() {
 		return "password";
 	}

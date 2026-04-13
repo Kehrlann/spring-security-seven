@@ -125,15 +125,6 @@ class SecurityConfiguration {
 	}
 
 	@Bean
-	@Order(2)
-	SecurityFilterChain oauth2FilterChain(HttpSecurity http) {
-		return http.securityMatcher("/oauth2/**")
-			.authorizeHttpRequests(authz -> authz.anyRequest().permitAll())
-			.oauth2Client(withDefaults())
-			.build();
-	}
-
-	@Bean
 	@Order(3)
 	SecurityFilterChain todoFilterChain(HttpSecurity http) {
 		return http.securityMatcher("/todo/**")

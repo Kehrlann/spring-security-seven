@@ -2,6 +2,9 @@ spring:
   application:
     name: authorization-server
   security:
+    user:
+      name: daniel-sso
+      password: pw
     oauth2:
       authorizationserver:
         client:
@@ -27,10 +30,11 @@ spring:
                 - "http://127.0.0.1:8080/login/oauth2/code/authserver"
                 - "http://localhost:8080/authorize/oauth2/code/authserver"
                 - "http://localhost:8080/login/oauth2/code/authserver"
-
+                - "http://localhost:8080/authorize/oauth2/code/default-client"
+                - "http://localhost:8080/authorize/oauth2/code/default-client"
 server:
   port: 9000
-  reactive:
+  servlet:
     session:
       cookie:
         name: AUTHORIZATION_SERVER_SESSION_ID

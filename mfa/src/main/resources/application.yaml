@@ -22,3 +22,6 @@ spring:
             issuer-uri: http://localhost:9000
 server:
   port: 8080
+logging:
+  level:
+    org.springframework.security: TRACE

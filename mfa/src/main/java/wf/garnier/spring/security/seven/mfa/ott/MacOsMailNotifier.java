@@ -5,9 +5,12 @@ import java.util.concurrent.ExecutionException;
 
 public class MacOsMailNotifier implements MailNotifier {
 
+	private final ConsoleMailNotifier consoleMailNotifier = new ConsoleMailNotifier();
+
 	@Override
 	public void notify(String title, String message, String link) {
 		try {
+			consoleMailNotifier.notify(title, message, link);
 			Runtime.getRuntime().exec(new String[] {
 					//@formatter:off
                     "terminal-notifier",

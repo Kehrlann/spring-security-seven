@@ -19,7 +19,7 @@ class OAuth2Controller {
 
 	@GetMapping("/oauth2/hugo")
 	public List<HugoService.Book> hugo() {
-		return hugoService.listHugo(2026);
+		return hugoService.listHugo(2022);
 	}
 
 	@GetMapping("/oauth2/register")

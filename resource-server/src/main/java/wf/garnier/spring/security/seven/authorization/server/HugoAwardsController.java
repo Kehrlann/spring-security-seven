@@ -21,4 +21,9 @@ class HugoAwardsController {
 		return hugoAwardsService.getWinner(from, to);
 	}
 
+	@GetMapping("/hugo/nominees")
+	public List<Book> getNominees(@RequestParam Integer year) {
+		return hugoAwardsService.getNominees(year);
+	}
+
 }
