@@ -19,6 +19,7 @@ public class AuthorizationServerApplication {
 		return http -> http
 				.authorizeHttpRequests(authz -> {
 					authz.requestMatchers("/oauth2/register").permitAll();
+					authz.requestMatchers("/public.html").permitAll();
                 })
 				.httpBasic(Customizer.withDefaults());
 	}

@@ -54,9 +54,9 @@ class SecurityConfiguration {
 			.requireFactors(FactorGrantedAuthority.PASSWORD_AUTHORITY, FactorGrantedAuthority.OTT_AUTHORITY)
 			.build();
 
-		var passwordLastMinute = AuthorizationManagerFactories.multiFactor()
-			.requireFactor((factor) -> factor.passwordAuthority().validDuration(Duration.ofSeconds(30)))
-			.build();
+var passwordLastMinute = AllRequiredFactorsAuthorizationManager.builder()
+	.requireFactor((factor) -> factor.passwordAuthority().validDuration(Duration.ofSeconds(30)))
+	.build();
 
 		AuthorizationManager<RequestAuthorizationContext> adminsMustMfa = new AuthorizationManager<>() {
 
@@ -71,7 +71,7 @@ class SecurityConfiguration {
 				if (auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).anyMatch("ROLE_admin"::equals)) {
 					return mfa.authorize(authentication, object);
 				}
-				return passwordLastMinute.authenticated().authorize(authentication, object);
+				return passwordLastMinute.authorize(authentication, object);
 			}
 		};
 
@@ -86,8 +86,7 @@ class SecurityConfiguration {
 						return new AuthorizationDecision(false);
 					});
 					authz.requestMatchers("/admin").access(mfa.hasRole("admin"));
-					authz.requestMatchers("/password")
-							.access(passwordLastMinute.authenticated());
+					authz.requestMatchers("/password").access(passwordLastMinute);
 					authz.requestMatchers("/stronger-password").access(adminsMustMfa);
 
 					authz.anyRequest().authenticated();
