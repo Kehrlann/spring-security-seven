@@ -42,6 +42,13 @@ Software Engineer
 - <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
 
 ---
+layout: fact
+class: huge
+---
+
+# <a href="https://www.youtube.com/watch?v=-x8-s3QnhMQ">🥽 a word of warning</a>
+
+---
 
 ## Spring Security 7
 
