@@ -66,4 +66,4 @@ On Authz server:
   - with token
 - Show service client @GetExchange
   - @ClientRegistrationId
-  - 
+  - OAuth2RestClientHttpServiceGroupConfigurer
