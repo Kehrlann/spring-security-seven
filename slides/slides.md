@@ -71,7 +71,6 @@ https://docs.spring.io/spring-security/reference/7.0/whats-new.html
 1. ⚙️ Modular configuration
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
-1. 🍹 The little details
 
 ---
 
@@ -84,7 +83,6 @@ https://docs.spring.io/spring-security/reference/7.0/whats-new.html
 1. ⚙️ Modular configuration
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
-1. 🍹 The little details
 
 ---
 
@@ -168,7 +166,6 @@ http.authorizeHttpRequests()
 1. ⚙️ Modular configuration
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
-1. 🍹 The little details
 
 ---
 
@@ -233,7 +230,6 @@ return http
 1. **⚙️ Modular configuration**
 1. 🔒 OAuth2 new features
 1. 🤖 MCP Security
-1. 🍹 The little details
 
 ---
 
@@ -258,7 +254,6 @@ A variant `ThrowingCustomizer` handles exceptions.
 1. ⚙️ Modular configuration
 1. **🔒 OAuth2 new features**
 1. 🤖 MCP Security
-1. 🍹 The little details
 
 ---
 
@@ -271,7 +266,7 @@ A variant `ThrowingCustomizer` handles exceptions.
     - Enfore Proof Key for Code Exchange by default
 - Client:
     - Support HTTP Service Client
-    - Use `@ClientRegistrationId`
+    - Use `@ClientRegistrationId` + `OAuth2RestClientHttpServiceGroupConfigurer`
 
 ---
 
@@ -284,7 +279,6 @@ A variant `ThrowingCustomizer` handles exceptions.
 1. ⚙️ Modular configuration
 1. 🔒 OAuth2 new features
 1. **🤖 MCP Security**
-1. 🍹 The little details
 
 ---
 
@@ -304,31 +298,6 @@ Support for MCP: Servers, Clients, and for MCP-compliant authorization-server
 
 ---
 
-## Spring Security 7
-
-<br>
-
-1. 📋 The boring stuff
-1. 🔑📥🧬 Multi-Factor Authentication
-1. ⚙️ Modular configuration
-1. 🔒 OAuth2 new features
-1. 🤖 MCP Security
-1. **🍹 The little details**
-
----
-
-## The little details
-
-<br>
-
-- `CsrfConfigurer#spa` for single-page apps
-- `Authentication.toBuilder` to update authentications
-- `Password4j` support
-- Particular entrypoints for missing authorities
-    - `DelegatingMissingAuthorityAccessDeniedHandler`
-
----
-
 ## References
 
 &nbsp;
@@ -340,6 +309,28 @@ Support for MCP: Servers, Clients, and for MCP-compliant authorization-server
 - <logos-bluesky /> @garnier.wf
 - <logos-firefox /> https://garnier.wf/
 - <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
+
+---
+layout: two-cols
+---
+
+<div style="height: 100%; display: flex; flex: row; justify-content: center; align-items: center;" >
+    <img src="/testing-spring-boot-applications-cover.png" style="" >
+</div>
+
+::right::
+
+<div style="height: 100%; display: flex; flex-flow: column; justify-content: center; align-items: center;" >
+    <img src="/manning-affiliate-qr-code.png" style="display: block;" >
+    <div>https://hubs.la/Q04bFz560</div>
+    <br>
+    <div>45% off everything with code</div>
+    <br>
+    <div><b>springio26</b></div>
+    <br>
+    <div>(until May 2nd)</div>
+</div>
+
 
 ---
 layout: image
