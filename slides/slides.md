@@ -42,13 +42,6 @@ Software Engineer
 - <fluent-emoji-flat-envelope-with-arrow /> contact@garnier.wf
 
 ---
-layout: fact
-class: huge
----
-
-# <a href="https://www.youtube.com/watch?v=-x8-s3QnhMQ">🥽 a word of warning</a>
-
----
 
 ## Spring Security 7
 
@@ -295,6 +288,22 @@ Track Model Context Protocol (MCP) authorization spec
 <small>(that's hard, it changes every 3 months)</small>
 
 Support for MCP: Servers, Clients, and for MCP-compliant authorization-server
+
+---
+layout: two-cols
+---
+
+<div style="height: 100%; display: flex; flex: row; justify-content: center; align-items: center;" >
+    <img src="/mcp-session-springio.png" style="height:100%;" >
+</div>
+
+::right::
+
+### MCP deep dive
+
+Tomorrow, Apr 15th, 11:30
+
+Track 3
 
 ---
 
