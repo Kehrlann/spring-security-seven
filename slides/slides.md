@@ -194,10 +194,9 @@ Use with:
 
 ```java
 // AuthorizationManagerFactory
-var passwordLastMinute = AuthorizationManagerFactories.multiFactor()
-	.requireFactor((factor) -> factor
-			.passwordAuthority()
-			.validDuration(Duration.ofSeconds(30))
+var passwordLastMinute = AllRequiredFactorsAuthorizationManager.builder()
+	.requireFactor((factor) -> 
+			factor.passwordAuthority().validDuration(Duration.ofSeconds(30))
 	)
 	.build();
 
@@ -205,7 +204,7 @@ var passwordLastMinute = AuthorizationManagerFactories.multiFactor()
 return http
 		.authorizeHttpRequests(authz -> {
 					authz.requestMatchers("/password")
-							.access(passwordLastMinute.authenticated());
+							.access(passwordLastMinute);
 					// ...
 				})
 		// ...
