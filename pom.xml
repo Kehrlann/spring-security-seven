@@ -19,7 +19,7 @@
 		<spring-javaformat-maven-plugin.version>0.0.47</spring-javaformat-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<spring-boot.version>4.1.0-M4</spring-boot.version>
+		<spring-boot.version>4.1.0</spring-boot.version>
 	</properties>
 
 	<modules>
