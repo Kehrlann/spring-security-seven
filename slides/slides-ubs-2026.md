@@ -19,7 +19,7 @@ canvasWidth: 1024
 
 ### Daniel Garnier-Moiroux
 
-Spring I/O, 2026-04-14
+UBS, 2026-07-09
 
 
 ---
@@ -35,7 +35,8 @@ class: smaller
 
 Software Engineer
 
-- <logos-spring-icon /> Spring
+- <logos-spring-icon /> Spring / ai, security
+- <logos-model-context-protocol-icon /> MCP / java-sdk
 - <logos-bluesky /> @garnier.wf
 - <logos-firefox /> https://garnier.wf/
 - <logos-github-icon /> github.com/Kehrlann/
@@ -274,6 +275,73 @@ A variant `ThrowingCustomizer` handles exceptions.
 
 ---
 
+## MCP: Why?
+
+<br>
+
+LLMs create text (or bytes) from their training set.
+
+They lack:
+
+1. Up-to-date information
+1. Ability to perform "actions"
+
+Can't perform an "Observe -> Decide -> Act" loop
+
+---
+
+## Enter MCP
+
+<br>
+
+Model Context Protocol
+
+https://modelcontextprotocol.io
+
+By Anthropic, now AAIF
+
+---
+layout: image
+image: /mcp-flow-1.png
+---
+
+---
+layout: image
+image: /mcp-flow-2.png
+---
+
+---
+layout: image
+image: /mcp-flow-3.png
+---
+
+---
+layout: image
+image: /mcp-flow-4.png
+---
+
+---
+layout: image
+image: /mcp-flow-5.png
+---
+
+---
+layout: image
+image: /mcp-flow-6.png
+---
+
+---
+layout: image
+image: /mcp-flow-7.png
+---
+
+---
+layout: image
+image: /mcp-flow-8.png
+---
+
+---
+
 ## MCP Security
 
 <br>
@@ -287,22 +355,6 @@ Track Model Context Protocol (MCP) authorization spec
 <small>(that's hard, it changes every 3 months)</small>
 
 Support for MCP: Servers, Clients, and for MCP-compliant authorization-server
-
----
-layout: two-cols
----
-
-<div style="height: 100%; display: flex; flex: row; justify-content: center; align-items: center;" >
-    <img src="/mcp-session-springio.png" style="height:100%;" >
-</div>
-
-::right::
-
-### MCP deep dive
-
-Tomorrow, Apr 15th, 11:30
-
-Track 3
 
 ---
 
@@ -331,12 +383,6 @@ layout: two-cols
 <div style="height: 100%; display: flex; flex-flow: column; justify-content: center; align-items: center;" >
     <img src="/manning-affiliate-qr-code.png" style="display: block;" >
     <div>https://hubs.la/Q04bFz560</div>
-    <br>
-    <div>45% off everything with code</div>
-    <br>
-    <div><b>springio26</b></div>
-    <br>
-    <div>(until May 2nd)</div>
 </div>
 
 
